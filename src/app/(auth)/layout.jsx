@@ -1,15 +1,13 @@
-import Footer from "@/Components/homepage/Footer";
 import Navbar from "@/Components/shared/Navbar";
 
 
-const MainLayout = ({children}) => {
+const AuthenticationLayout = ({children}) => {
     return (
         <div>
             <Navbar />
             <main>{children}</main>
-            <Footer />
         </div>
     );
 };
 
-export default MainLayout;
+export default AuthenticationLayout;
