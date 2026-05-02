@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "react-hook-form";
+import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const LoginPage = () => {
@@ -21,13 +22,17 @@ const LoginPage = () => {
       callbackURL: "/",
     });
 
-    if(error) {
+    if (error) {
       toast.warning(error.message);
-    }
-    else{
+    } else {
       toast.info("You have logged in successfully");
     }
+  };
 
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -54,6 +59,12 @@ const LoginPage = () => {
               {...register("password")}
             />
 
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-outline mt-4"
+            >
+              <FaGoogle /> Continue with Google
+            </button>
             <button className="btn btn-neutral mt-4">Login</button>
           </fieldset>
         </form>
