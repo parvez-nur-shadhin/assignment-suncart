@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import UserImage from '@/assets/user.png'
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -57,9 +58,10 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-3">
           <div>
-            <Image src={user.image || }  />
+            {user ? <Image src={user.image} alt="user-image" height={40} width={40} className="rounded-full" /> : <Image src={UserImage} alt="user-image" height={40} width={40} className="rounded-full" />}
+            
           </div>
           <div>
             {user ? (
