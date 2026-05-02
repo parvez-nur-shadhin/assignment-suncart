@@ -4,7 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import UserImage from '@/assets/user.png'
+import UserImage from "@/assets/user.png";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -60,17 +60,37 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-3">
           <div>
-            {user ? <Image src={user.image} alt="user-image" height={40} width={40} className="rounded-full" /> : <Image src={UserImage} alt="user-image" height={40} width={40} className="rounded-full" />}
-            
+            <Link href={"/my-profile"}>
+              {user ? (
+                <Image
+                  src={user.image}
+                  alt="user-image"
+                  height={40}
+                  width={40}
+                  className="rounded-full"
+                />
+              ) : (
+                <Image
+                  src={UserImage}
+                  alt="user-image"
+                  height={40}
+                  width={40}
+                  className="rounded-full"
+                />
+              )}
+            </Link>
           </div>
           <div>
             {user ? (
-              <button className="btn bg-red-500 text-white" onClick={async() => await authClient.signOut()}>Log Out</button>
+              <button
+                className="btn bg-red-500 text-white"
+                onClick={async () => await authClient.signOut()}
+              >
+                Log Out
+              </button>
             ) : (
               <button className="btn bg-blue-500 text-white">
-              <Link href={"/login"}>
-                Login
-              </Link>
+                <Link href={"/login"}>Login</Link>
               </button>
             )}
           </div>
