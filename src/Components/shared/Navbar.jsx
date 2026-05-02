@@ -1,28 +1,27 @@
+"use client";
+
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
-
-    const links = (
-        <>
-            <li>
-                <Link href={"/"}>
-                    Home
-                </Link>
-            </li>
-            <li>
-                <Link href={"/products"}>
-                    Products
-                </Link>
-            </li>
-            <li>
-                <Link href={"/my-profile"}>
-                    My Profile
-                </Link>
-            </li>
-        </>
-    )
+  const links = (
+    <>
+      <li>
+        <Link href={"/"}>Home</Link>
+      </li>
+      <li>
+        <Link href={"/products"}>Products</Link>
+      </li>
+      <li>
+        <Link href={"/my-profile"}>My Profile</Link>
+      </li>
+    </>
+  );
 
   return (
     <div>
@@ -50,18 +49,29 @@ const Navbar = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-             {links}
+              {links}
             </ul>
           </div>
           <a className="text-3xl font-bold">SunCart</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {links}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn bg-blue-500 text-white">Login</a>
+          <div>
+            <Image src={user.image || }  />
+          </div>
+          <div>
+            {user ? (
+              <button className="btn bg-red-500 text-white" onClick={async() => await authClient.signOut()}>Log Out</button>
+            ) : (
+              <button className="btn bg-blue-500 text-white">
+              <Link href={"/login"}>
+                Login
+              </Link>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
