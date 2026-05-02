@@ -28,7 +28,7 @@ const Cards = ({ product }) => {
           </div>
           <div className="card-actions justify-end px-6 mt-5 mb-5">
             <button className="btn bg-blue-500 text-white">
-              <Link href={"/details"}>View Details</Link>
+              <Link href={`/product-details/${product.id}`}>View Details</Link>
             </button>
           </div>
         </div>
