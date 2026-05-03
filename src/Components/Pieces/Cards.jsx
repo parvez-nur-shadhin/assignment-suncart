@@ -27,9 +27,11 @@ const Cards = ({ product }) => {
             <p className="font-bold">{product.price}$</p>
           </div>
           <div className="card-actions justify-end px-6 mt-5 mb-5">
-            <button className="btn bg-blue-500 text-white">
-              <Link href={`/product-details/${product.id}`}>View Details</Link>
-            </button>
+            <Link href={`/product-details/${product.id}`}>
+              <button className="btn bg-blue-500 text-white">
+                View Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>

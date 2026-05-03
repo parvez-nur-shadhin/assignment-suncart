@@ -89,9 +89,9 @@ const Navbar = () => {
                 Log Out
               </button>
             ) : (
-              <button className="btn bg-blue-500 text-white">
-                <Link href={"/login"}>Login</Link>
-              </button>
+              <Link href={"/login"}>
+                <button className="btn bg-blue-500 text-white">Login</button>
+              </Link>
             )}
           </div>
         </div>
