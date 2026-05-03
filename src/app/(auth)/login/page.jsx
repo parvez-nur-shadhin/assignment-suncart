@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -29,7 +30,7 @@ const LoginPage = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = async() => {
     const data = await authClient.signIn.social({
       provider: "google",
     });
@@ -58,6 +59,8 @@ const LoginPage = () => {
               placeholder="Password"
               {...register("password")}
             />
+
+            <p>Don't have an account? <span className="text-blue-700 hover:underline hover:text-black"><Link href={"/register"}>Register</Link></span></p>
 
             <button
               onClick={handleGoogleSignIn}
