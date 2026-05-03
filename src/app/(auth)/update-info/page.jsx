@@ -17,8 +17,6 @@ const UpdateInfoForm = () => {
       image: photo,
       name: name,
     });
-
-    console.log(name, photo);
   };
 
   return (
